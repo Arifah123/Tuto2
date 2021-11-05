@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:param name="carform" value="#{BorangKereta}"></ui:param>
+<h:head>
+	<title>Car List Form</title>
+</h:head>
+
+<h:body>
+	<h:form id="mainForm">
+	<p:panel header="Car List">
+	<p:dataTable var="car" id="carList" value="#{carListForm.cars}"  >
+	
+			<p:column headerText="Owner">
+			<h:outputText value="#{car.owner}"/>
+			</p:column>
+			
+			<p:column headerText="Model">
+			<h:outputText value="#{car.model}"/>
+			</p:column>
+			
+			<p:column headerText="Manufacturer">
+			<h:outputText value="#{car.manufacturer}"/>
+			</p:column>
+			
+			<p:column headerText="Description">
+			<h:outputText value="#{car.description}"/> 
+			</p:column>
+             
+            <p:column headerText="Color">
+			<h:outputText value="#{car.color}"/>
+			</p:column>
+			
+			<p:column headerText="Date Manufactured">
+			<h:outputText value="#{car.dateManufactured}"/> 
+			</p:column>
+            
+	</p:dataTable>
+	</p:panel>
+	<br></br>
+	<h:commandButton action="index" value="Back"></h:commandButton>
+	</h:form>
+
+	<ui:debug hotkey="x" />
+
+</h:body>
+</html>
