@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:param name="carform" value="#{BorangKereta}"></ui:param>
+<h:head>
+	<title>Car Form</title>
+	<style>
+table, th, td {
+  border: 1px solid #dddddd;
+  border-collapse: collapse;
+  }
+
+td, th {
+  text-align: left;
+  padding: 5px;
+}
+</style>
+</h:head>
+
+<h:body>
+
+	<h:form id="mainForm">
+	<p:growl id="growl-sticky" for="sticky-key" showDetail="true" sticky="true" />
+	<p:panel header="Car Info">
+	<p:panelGrid id="grid" columns="2">	
+		<p:outputLabel for="owner" value="Owner"></p:outputLabel>
+		  <h:panelGroup>
+		  	  <p:inputText id="owner" value="#{carform.car.owner}" required="true">
+		  	  <f:validateLength minimum="1" maximum="10" ></f:validateLength>
+		  	  <p:message for="owner"/>
+		  		</p:inputText>
+		  </h:panelGroup>
+		  
+		  		<p:outputLabel for="model" value="Model"></p:outputLabel>
+		  <h:panelGroup>
+		  	  <p:inputText id="model" value="#{carform.car.model}" required="true">
+		  	  <f:validateLength minimum="1" maximum="10" ></f:validateLength>
+		  	  <p:message for="model"/>
+		  		</p:inputText>
+		  </h:panelGroup>
+		  
+		  		 <p:outputLabel for="manufacturer" value="Manufacturer"></p:outputLabel>
+		  <h:panelGroup>
+		  	  <h:selectOneMenu id="manufacturer" value = "#{carform.car.manufacturer}"> 
+   			  <f:selectItem itemValue = "Honda" itemLabel = "Honda" /> 
+   			  <f:selectItem itemValue = "Toyota" itemLabel = "Toyota" /> 
+   			  <f:selectItem itemValue = "Proton" itemLabel = "Proton" /> 
+   			  <f:selectItem itemValue = "Perodua" itemLabel = "Perodua" /> 
+		</h:selectOneMenu>
+		  </h:panelGroup>
+		  
+		  <p:outputLabel for="description" value="Description"></p:outputLabel>
+		      <h:panelGroup>
+			  	 <h:inputTextarea id="description" value="#{carform.car.description}" cols="30" rows="10"  required="true">	
+			  	 </h:inputTextarea>  
+			  </h:panelGroup>
+			  
+			  <p:outputLabel for="color" value="Color"></p:outputLabel>
+		      <h:panelGroup>
+		   <h:selectOneRadio id="color" value = "#{carform.car.color}"> 
+  		   <f:selectItem itemValue = "Blue" itemLabel = "Blue" /> 
+	       <f:selectItem itemValue = "White" itemLabel = "White" />
+	        <f:selectItem itemValue = "Black" itemLabel = "Black" />
+		   </h:selectOneRadio>    
+		    </h:panelGroup>
+		    
+		    <p:outputLabel for="dateManufactured" value="Date Manufactured"></p:outputLabel>
+		     <h:panelGroup>
+		    <p:calendar id="dateManufactured" value="#{carform.car.dateManufactured}" timeZone="" required="true" navigator="true" maxdate="today" patern="dd/MM/yyy"/>
+            <h:message for="dateManufactured"/>  
+			</h:panelGroup>
+		  </p:panelGrid>
+	
+	</p:panel>
+	<br></br>
+	 <!--<h:commandButton action="index" value="Back"></h:commandButton> &nbsp;&nbsp;&nbsp; -->
+	<input type="button" value="Back" onclick="window.location.href='index.xhtml'"/> &nbsp;&nbsp;&nbsp;
+	<h:commandButton value="Submit" actionListener="#{carform.submit()}" update="growl-sticky"></h:commandButton>
+		
+		
+
+	</h:form>
+
+	<ui:debug hotkey="x" />
+
+</h:body>
+</html>
